@@ -1,29 +1,34 @@
 // App.js
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import HRC from './HRC';
 
-class App extends PureComponent {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'off',
+            result: '',
         };
 
         this._handleChange = this._handleChange.bind(this);
+        this._handleSend = this._handleSend.bind(this);
     }
 
-    _handleChange(value) {
-        this.setState({ text: value });
+    _handleChange(e) {
+        this.setState({ text: e.target.value });
+    }
+
+    _handleSend() {
+        this.setState({ result: this.state.text });
     }
 
     render() {
         return (
             <div>
-                <HRC handleChange={this._handleChange} />
+                <input type="text" onChange={this._handleChange} />
+                <button onClick={this._handleSend}>送信</button>
                 <div>
-                    App/
-                    {this.state.text}
+                    <div>送信値</div>
+                    <div>{this.state.result}</div>
                 </div>
             </div>
         );
