@@ -1,14 +1,15 @@
 // App.js
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 
-class App extends Component {
+class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             result: '',
         };
 
+        this.textInput = React.createRef();
         this._handleChange = this._handleChange.bind(this);
         this._handleSend = this._handleSend.bind(this);
     }
@@ -18,13 +19,14 @@ class App extends Component {
     }
 
     _handleSend() {
-        this.setState({ result: this.state.text });
+        const result = this.textInput.current.value;
+        this.setState({ result });
     }
 
     render() {
         return (
             <div>
-                <input type="text" onChange={this._handleChange} />
+                <input type="text" ref={this.textInput} onChange={this._handleChange} />
                 <button onClick={this._handleSend}>送信</button>
                 <div>
                     <div>送信値</div>

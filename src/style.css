@@ -1,0 +1,20 @@
+.helloDiv {
+    background-color: #008080;
+    color: white;
+    font-family: Roboto;
+    height: 50px;
+    margin: 5rem;
+    line-height: 50px;
+    text-align: center;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 200ms;
+}
+.helloDiv:hover {
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    background-color: #00a0a0;
+}
+
+.helloSpan {
+    font-size: 30px;
+    font-style: italic;
+    margin: 1rem;
+}
