@@ -1,10 +1,15 @@
 // App.js
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import HRC from './HRC';
 
 class App extends Component {
     render() {
-        return <div>Hello React World!</div>;
+        return (
+            <div>
+                <HRC title="React Title">this is this.props.children</HRC>
+            </div>
+        );
     }
 }
 
