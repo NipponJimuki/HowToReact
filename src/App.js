@@ -1,13 +1,30 @@
 // App.js
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import HRC from './HRC';
 
-class App extends Component {
+class App extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'off',
+        };
+
+        this._handleChange = this._handleChange.bind(this);
+    }
+
+    _handleChange(value) {
+        this.setState({ text: value });
+    }
+
     render() {
         return (
             <div>
-                <HRC title="React Title">this is this.props.children</HRC>
+                <HRC handleChange={this._handleChange} />
+                <div>
+                    App/
+                    {this.state.text}
+                </div>
             </div>
         );
     }

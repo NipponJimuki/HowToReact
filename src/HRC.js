@@ -1,25 +1,39 @@
 // HRC.js
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class HRC extends Component {
+class HRC extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bool: false,
+        };
+        this._handleClick = this._handleClick.bind(this);
+    }
+
+    _handleClick() {
+        const { bool } = this.state;
+        const { handleChange } = this.props;
+        this.setState({ bool: !bool });
+        handleChange(!bool ? 'on' : 'off');
+    }
+
     render() {
-        const { title, children } = this.props;
+        const { bool } = this.state;
+        const subText = bool ? 'on' : 'off';
         return (
             <div>
-                <div>{title}</div>
-                <div>{children}</div>
+                <button onClick={this._handleClick}>Hello</button>
+                <div>{subText}</div>
             </div>
         );
     }
 }
 HRC.defaultProps = {
-    title: '',
-    children: null,
+    handleChange() {},
 };
 HRC.propTypes = {
-    title: PropTypes.string,
-    children: PropTypes.node,
+    handleChange: PropTypes.func,
 };
 
 export default HRC;
